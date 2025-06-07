@@ -1,5 +1,6 @@
 // Fallback for using MaterialIcons on Android and web.
 
+import AntDesign from '@expo/vector-icons/AntDesign';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { SymbolWeight, SymbolViewProps } from 'expo-symbols';
 import { ComponentProps } from 'react';
@@ -18,6 +19,17 @@ const MAPPING = {
   'paperplane.fill': 'send',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
+   'plus' : 'add',
+  'plus.circle.fill': 'add-circle',
+  'ellipsis': 'more-vert',
+  'rectangle': 'check-box-outline-blank',
+  'checkmark.rectangle.fill': 'check-box',
+  'list.bullet': 'list-alt',
+  'clock.fill': 'access-time-filled',
+  'slider.horizontal.3': 'settings',
+  'calendar':'calendar-month',
+  'chart.bar.fill': 'insert-chart-outlined',
+  'bell': 'notifications'
 } as IconMapping;
 
 /**

@@ -12,6 +12,6 @@ export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
-        <Stack screenOptions={{ headerShown: false }} />
+    <Stack screenOptions={{ headerShown: false }} />
   );
 }
