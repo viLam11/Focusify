@@ -19,7 +19,8 @@ const MAPPING = {
   'paperplane.fill': 'send',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
-   'plus' : 'add',
+  'chevron.left': 'chevron-left',
+  'plus' : 'add',
   'plus.circle.fill': 'add-circle',
   'ellipsis': 'more-vert',
   'rectangle': 'check-box-outline-blank',
@@ -29,7 +30,14 @@ const MAPPING = {
   'slider.horizontal.3': 'settings',
   'calendar':'calendar-month',
   'chart.bar.fill': 'insert-chart-outlined',
-  'bell': 'notifications'
+  'exclamationmark.octagon': 'error-outline',
+  'bell': 'notifications',
+ 'hourglass.bottomhalf.fill' : 'hourglass-empty',
+  'music.note': 'music-note',
+  'chevron.compact.down': 'keyboard-arrow-down',
+  'person.crop.circle': 'account-box',
+  'checkmark.circle.fill': 'check-circle',
+  'clock': 'access-time'
 } as IconMapping;
 
 /**
