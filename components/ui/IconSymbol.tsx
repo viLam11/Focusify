@@ -32,12 +32,18 @@ const MAPPING = {
   'chart.bar.fill': 'insert-chart-outlined',
   'exclamationmark.octagon': 'error-outline',
   'bell': 'notifications',
- 'hourglass.bottomhalf.fill' : 'hourglass-empty',
+  'hourglass.bottomhalf.fill' : 'hourglass-empty',
   'music.note': 'music-note',
   'chevron.compact.down': 'keyboard-arrow-down',
   'person.crop.circle': 'account-box',
   'checkmark.circle.fill': 'check-circle',
-  'clock': 'access-time'
+  'clock': 'access-time',
+  'sun.and.horizon.circle': 'wb-sunny',
+  'magnifyingglass': 'search',
+   'sun.max': 'wb-sunny',
+   'sun.haze':'brightness-5',
+   'doc.plaintext': 'event-available',
+   'trash': 'delete',
 } as IconMapping;
 
 /**

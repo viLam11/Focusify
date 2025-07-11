@@ -3,7 +3,8 @@ import { IconSymbol } from '@/components/ui/IconSymbol';
 import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'expo-router';
+import { RelativePathString, useRouter } from 'expo-router';
+import SettingTab from './SettingTab';
 
 
 export default function Setting() {
@@ -35,16 +36,18 @@ export default function Setting() {
                             <IconSymbol name="chevron.right" color="black" size={30} />
                         </View>
                     </View>
-                    <View className="h-10 w-11/12 mx-auto flex flex-row my-4">
-                        <View className="w-10/12 flex flex-row items-center">
-                            <IconSymbol name='person.crop.circle' color="black" size={30} />
-                            <Text className="font-semibold text-lg ml-4">My Profile</Text>
-                        </View>
-                        <View className='w-2/12 justify-end items-end'>
-                            <IconSymbol name="chevron.right" color="black" size={30} />
-                        </View>
-                    </View>
+                     <SettingTab tabName='To do Date' tabUrl={'/main/ToDoDetail'as RelativePathString}/>
 
+                    {/* <View className="h-10 w-11/12 mx-auto flex flex-row my-4">
+                        <View className="w-10/12 flex flex-row items-center">
+                            <IconSymbol name='person.crop.circle' color="black" size={30} />
+                            <Text className="font-semibold text-lg ml-4">My Profile</Text>
+                        </View>
+                        <View className='w-2/12 justify-end items-end'>
+                            <IconSymbol name="chevron.right" color="black" size={30} />
+                        </View>
+                    </View> */}
+{/* 
                     <View className="h-10 w-11/12 mx-auto flex flex-row my-4">
                         <View className="w-10/12 flex flex-row items-center">
                             <IconSymbol name='person.crop.circle' color="black" size={30} />
@@ -70,8 +73,8 @@ export default function Setting() {
                         </View>
                         <View className='w-2/12 justify-end items-end'>
                             <IconSymbol name="chevron.right" color="black" size={30} />
-                        </View>
-                    </View>
+                        </View> 
+                    </View> */}
 
                 </View>
 
