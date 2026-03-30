@@ -2,9 +2,10 @@ import DeviceNav from '@/components/Navigation/DeviceNav';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import React from 'react';
 import { View, Text, ScrollView, Dimensions, Image, TouchableOpacity } from 'react-native';
-import Svg, { Circle, Rect } from 'react-native-svg';
+import Svg, { Circle, Path, Rect } from 'react-native-svg';
 import { useRouter } from 'expo-router';
 import { useState, useEffect } from 'react';
+import { sin, cos, unit, e } from 'mathjs';
 
 const taskList = [
     { id: 1, title: 'Task 1', completed: false },
@@ -14,21 +15,69 @@ const taskList = [
     { id: 5, title: 'Task 5', completed: false },
 ]
 
+const formatTime = (totalMins: number) => {
+    const hours = Math.floor(totalMins / 60);
+    const minutes = totalMins % 60;
+    return `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}`;
+}
+const degToRad = (x: number) => (Math.PI * x / 180);
+export type Coordinate = {
+    x: number,
+    y: number
+}
+
 export default function Pomodoro() {
     const screenHeight = Dimensions.get('window').height;
-        const router = useRouter();
+    const screenWidth = Dimensions.get('window').width;
+    const defaultCoordinate: Coordinate = { x: 0.5 * screenWidth, y: 0.45*screenHeight - 120 };
+
+    const router = useRouter();
 
     const [choseTaskMode, setChoseTaskMode] = useState(false);
     const [currentTask, setCurrentTask] = useState(taskList[0]);
+    const [time, setTime] = useState(25);
+    const [arcs, setArcs] = useState<Coordinate[]>([])
+
+    const [coordinate, setCoordinate] = useState<Coordinate>(defaultCoordinate);
+
+    useEffect(() => {
+        if (time <= 0) return;
+        let arr = [];
+        for (let i = 0; i < (360 / time); i++) {
+            const deg = i * (360 / time);
+            const newX = screenWidth / 2 + 120* Math.sin(degToRad(deg))
+            const newY = 0.45*screenHeight + 120 * Math.cos(degToRad(deg))
+            
+            arr.push({ x: newX, y: newY });
+            setArcs(arr);
+        }
+        setCoordinate(arr[0]);
+    }, [time])
+
+    useEffect(() => {
+        const updateCoordinate = setInterval(() => {
+            const currIdx = arcs.findIndex((item) => item.x == coordinate.x && item.y == coordinate.y);
+            if (currIdx != -1 && currIdx < arcs.length - 1) {
+                setCoordinate(arcs[currIdx + 1])
+            }
+        }, 2000)
+       
+        return () => clearInterval(updateCoordinate);
+    }, [arcs])
+
     return (
         <View>
-            <Svg height={screenHeight} width="100%" style={{ position: 'absolute', top: 0, left: 0 }}>
-                <Rect x="0" y="0" width="100%" height={screenHeight} fill="#ff6347">
+            <Svg height={screenHeight} width={screenWidth} style={{ position: 'absolute', top: 0, left: 0 }}>
+                <Rect x="0" y="0" width={screenWidth} height={screenHeight} fill="#ff6347">
                 </Rect>
                 <Circle cx="50%" cy="45%" r="22%" fill="#ffffff" />
                 <Circle cx="50%" cy="80%" r="50%" fill="#ffffff" />
-                <Circle cx="50%" cy="45%" r="20%" fill="#ff6347" />
-                <Circle cx="50%" cy="45%" r="16%" fill="#ffffff" />
+                <Circle cx="50%" cy="45%" r="20%" fill="#ffffff" />
+                <Circle cx="50%" cy="45%" r="140" fill="#ff6347" />
+                <Circle cx="50%" cy="45%" r="100" fill="#ffffff" />
+                {
+                    <Path d={`M ${(defaultCoordinate.x)} ${defaultCoordinate.y} A 120 120 1 0 1 ${defaultCoordinate.x} ${defaultCoordinate.y}`} stroke="blue" strokeWidth="40" fill="none" />
+                }
             </Svg>
 
             <View className='flex flex-col min-h-screen'>
@@ -47,7 +96,7 @@ export default function Pomodoro() {
                                 <IconSymbol name="bell" size={30} color="white" style={{ textAlign: 'right', marginRight: 10 }} />
                             </View>
                         </View>
-                        
+
                         {/* select task  */}
                         <View className={`bg-white h-16  ${choseTaskMode ? 'rounded-t-md' : 'rounded-md'} w-10/12 mx-auto flex flex-row items-center justify-between`}>
                             <View className='h-full justify-center flex-grow '>
@@ -61,8 +110,8 @@ export default function Pomodoro() {
                                     setChoseTaskMode((oldMode) => !oldMode);
                                     console.log('choseTaskMode', choseTaskMode)
                                 }} >
-                                <IconSymbol name='chevron.compact.down' color="black" />
-                                </TouchableOpacity> 
+                                    <IconSymbol name='chevron.compact.down' color="black" />
+                                </TouchableOpacity>
                             </View>
                         </View>
                         <View className={`bg-white w-10/12 mx-auto ${choseTaskMode ? '' : 'hidden'}`}>
@@ -71,16 +120,12 @@ export default function Pomodoro() {
                                     <TouchableOpacity onPress={() => setCurrentTask(task)}>
                                         <Text className='ml-4'>{task.title} </Text>
                                     </TouchableOpacity>
-                                   
                                 </View>
-                            ))} 
+                            ))}
                         </View>
-
-
-
                     </View>
                     <View className='mx-auto top-[20%] h-1/2'>
-                        <Text className='text-6xl font-bold text-black '>25:00</Text>
+                        <Text className='text-6xl font-bold text-black text-center '>{formatTime(time)}</Text>
                         <Text className='text-lg text-gray-600 mb-8'>Focus on your task</Text>
                     </View>
 
@@ -89,18 +134,20 @@ export default function Pomodoro() {
                             <Text className='text-center text-white text-2xl font-semibold pt-4'>Bắt đầu</Text>
                         </View>
 
-                        <View className='flex flex-row justify-between items-center mx-4 mb-10'>
+                        <View className='w-10/12 mx-auto flex flex-row justify-between items-center mb-10'>
                             <View className='flex flex-col items-center space-y-2'>
-                                <IconSymbol name="exclamationmark.octagon"  color="black" size={40}/>
+                                <IconSymbol name="exclamationmark.octagon" color="black" size={40} />
                                 <Text>Strict Mode</Text>
                             </View>
-                            <View className='flex flex-col items-center'>   
-                                <IconSymbol name="hourglass.bottomhalf.fill" color="black" size={40} />    
+                            <View className='flex flex-col items-center'>
+                                <IconSymbol name="hourglass.bottomhalf.fill" color="black" size={40} />
                                 <Text>Timer Mode</Text>
                             </View>
-                            <View className='flex flex-col items-center'>   
-                                <IconSymbol name='music.note' color="black" size={40}  />
-                                <Text>White Noise</Text>
+                            <View className='flex flex-col items-center'>
+                                <TouchableOpacity >
+                                    <IconSymbol name='music.note' color="black" size={40} />
+                                </TouchableOpacity>
+                                <Text>Music</Text>
                             </View>
                         </View>
                     </View>

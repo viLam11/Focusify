@@ -44,6 +44,7 @@ const MAPPING = {
    'sun.haze':'brightness-5',
    'doc.plaintext': 'event-available',
    'trash': 'delete',
+   'flag': 'flag'
 } as IconMapping;
 
 /**

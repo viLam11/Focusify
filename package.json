@@ -32,6 +32,8 @@
     "expo-system-ui": "~5.0.8",
     "expo-web-browser": "~14.1.6",
     "focusify": "file:",
+    "lucide-react-native": "^0.543.0",
+    "mathjs": "^14.6.0",
     "nativewind": "^4.1.23",
     "react": "19.0.0",
     "react-dom": "19.0.0",
@@ -44,7 +46,8 @@
     "react-native-screens": "~4.11.1",
     "react-native-svg": "15.11.2",
     "react-native-web": "~0.20.0",
-    "react-native-webview": "13.13.5"
+    "react-native-webview": "13.13.5",
+    "trig-js": "^4.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

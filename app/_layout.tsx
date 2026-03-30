@@ -20,16 +20,16 @@ export default function RootLayout() {
 
   return (
     // <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-    //   <Stack>
+    //   <Stack screenOptions={} >
     //     <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
     //     <Stack.Screen name="+not-found" />
     //   </Stack>
-    //   <StatusBar style="auto" />
+    //   <StatusBar/>
     // </ThemeProvider>
      <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarStyle: { display: 'none' }, // nếu bạn muốn ẩn tab bar luôn
+        tabBarStyle: { display: 'none' }, 
       }}
     />
   );

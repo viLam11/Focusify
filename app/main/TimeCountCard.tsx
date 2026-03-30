@@ -51,18 +51,18 @@ export default function TimeCountCard({ title, totalTime, totalTask }: TimeCount
     // }, [title]);
 
     return (
-        <View className='w-full px-2 '>
-            <View className=' border-2 rounded-lg bg-white pl-4 py-2 ' style={{ borderColor: INFO[title].borderColor }}>
-                <View className="flex flex-row">
+        <View className='w-full px-2'>
+            <View className=' border-2 rounded-lg pl-4  h-32' style={{ borderColor: INFO[title].borderColor }}>
+                <View className="h-full flex flex-col justify-evenly">
+                    <View className="flex flex-row">
                     <IconSymbol name={INFO[title].icon} color={INFO[title].iconColor} />
                     <Text className='text-lg font-semibold ml-2'>{title}</Text>
                 </View>
                 {title !== "Completed" && title !== "Trash" && <View className='mt-2'>
                     <Text className='text-2xl font-bold '>{totalTime} ({totalTask}) </Text>
                 </View>
-
                 }
-
+                </View>
             </View>
         </View>
     );
