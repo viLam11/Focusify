@@ -1,12 +1,13 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import "../../global.css";
+import '../global.css';
 import { Link } from 'expo-router';
+
 export default function Index() {
   return (
     <View className='mt-10 bg-[#ff6347]'>
       <View className='h-3/4 items-center justify-center'>
         <Image
-          source={require('../../assets/images/logo.png')}
+          source={require('@/assets/images/logo.png')}
           resizeMode="contain"
         />
         <View>
@@ -17,12 +18,12 @@ export default function Index() {
       <View className='h-1/4 items-center '>
         <View>
           <TouchableOpacity>
-            <Link href="/main/HomePage">
+            <Link href="/main">
               <Text className='text-2xl font-semibold text-white'>Get Started</Text>
             </Link>
           </TouchableOpacity>
         </View>
-        
+
       </View>
     </View>
   );

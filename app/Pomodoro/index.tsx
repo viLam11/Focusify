@@ -1,11 +1,8 @@
-import DeviceNav from '@/components/Navigation/DeviceNav';
+import DeviceNav from '@/components/navigation/DeviceNav';
 import { IconSymbol } from '@/components/ui/IconSymbol';
-import React from 'react';
-import { View, Text, ScrollView, Dimensions, Image, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Dimensions, Image, TouchableOpacity } from 'react-native';
 import Svg, { Circle, Path, Rect } from 'react-native-svg';
-import { useRouter } from 'expo-router';
-import { useState, useEffect } from 'react';
-import { sin, cos, unit, e } from 'mathjs';
 
 const taskList = [
     { id: 1, title: 'Task 1', completed: false },
@@ -26,12 +23,10 @@ export type Coordinate = {
     y: number
 }
 
-export default function Pomodoro() {
+export default function PomodoroScreen() {
     const screenHeight = Dimensions.get('window').height;
     const screenWidth = Dimensions.get('window').width;
     const defaultCoordinate: Coordinate = { x: 0.5 * screenWidth, y: 0.45*screenHeight - 120 };
-
-    const router = useRouter();
 
     const [choseTaskMode, setChoseTaskMode] = useState(false);
     const [currentTask, setCurrentTask] = useState(taskList[0]);
@@ -47,7 +42,7 @@ export default function Pomodoro() {
             const deg = i * (360 / time);
             const newX = screenWidth / 2 + 120* Math.sin(degToRad(deg))
             const newY = 0.45*screenHeight + 120 * Math.cos(degToRad(deg))
-            
+
             arr.push({ x: newX, y: newY });
             setArcs(arr);
         }
@@ -61,7 +56,7 @@ export default function Pomodoro() {
                 setCoordinate(arcs[currIdx + 1])
             }
         }, 2000)
-       
+
         return () => clearInterval(updateCoordinate);
     }, [arcs])
 
@@ -97,7 +92,6 @@ export default function Pomodoro() {
                             </View>
                         </View>
 
-                        {/* select task  */}
                         <View className={`bg-white h-16  ${choseTaskMode ? 'rounded-t-md' : 'rounded-md'} w-10/12 mx-auto flex flex-row items-center justify-between`}>
                             <View className='h-full justify-center flex-grow '>
                                 <View className='h-full w-full rounded-full items-center flex flex-row'>
@@ -157,4 +151,4 @@ export default function Pomodoro() {
         </View>
 
     )
-}   
+}

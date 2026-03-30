@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { IconSymbol } from '../ui/IconSymbol';
+import { IconSymbol } from '@/components/ui/IconSymbol';
 
-export default function CalenderHeader() {
+export default function CalendarHeader() {
     return (
         <View className='w-11/12 mx-auto flex flex-row justify-center items-center '>
             <View className="w-1/4 items-start justify-center ">
@@ -16,4 +16,4 @@ export default function CalenderHeader() {
             </View>
         </View>
     );
-}   
+}

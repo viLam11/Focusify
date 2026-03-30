@@ -31,7 +31,6 @@
     "expo-symbols": "~0.4.5",
     "expo-system-ui": "~5.0.8",
     "expo-web-browser": "~14.1.6",
-    "focusify": "file:",
     "lucide-react-native": "^0.543.0",
     "mathjs": "^14.6.0",
     "nativewind": "^4.1.23",

@@ -1,8 +1,8 @@
 
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import { SFSymbol } from 'expo-symbols';
-import React, { useEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import React from 'react';
+import { View, Text } from 'react-native';
 
 type TimeCountCardProps = {
     title: 'Today' | 'Tomorrow' | 'Week' | 'Plan' | 'Completed' | 'Trash';
@@ -44,12 +44,6 @@ const INFO = {
 }
 
 export default function TimeCountCard({ title, totalTime, totalTask }: TimeCountCardProps) {
-    // useEffect(() => {
-    //     const info = INFO[title];  
-    //         console.log(info.icon);
-    //         console.log(INFO[title]);
-    // }, [title]);
-
     return (
         <View className='w-full px-2'>
             <View className=' border-2 rounded-lg pl-4  h-32' style={{ borderColor: INFO[title].borderColor }}>
@@ -67,6 +61,3 @@ export default function TimeCountCard({ title, totalTime, totalTask }: TimeCount
         </View>
     );
 }
-
-const styles = StyleSheet.create({})
-

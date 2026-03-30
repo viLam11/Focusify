@@ -6,7 +6,7 @@ const ProgressMiniCircle = ({ percent = 0, size = 30, strokeWidth = 4, color = '
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const progress = (percent / 100) * circumference;
-  
+
   return (
     <View className='absolute'>
       <Svg width={size} height={size}>

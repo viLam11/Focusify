@@ -1,9 +1,8 @@
 
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import { RelativePathString, useRouter } from 'expo-router';
-import { UrlObject } from 'expo-router/build/global-state/routeInfo';
 
 interface SettingTabProps {
     tabName: string;
@@ -28,7 +27,3 @@ export default function SettingTab( {tabName, tabUrl} : SettingTabProps ) {
         </View>
     );
 }
-
-const styles = StyleSheet.create({})
-
-

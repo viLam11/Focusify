@@ -1,6 +1,6 @@
-import DeviceNav from '@/components/Navigation/DeviceNav';
+import DeviceNav from '@/components/navigation/DeviceNav';
 import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { View, Text, Image } from 'react-native';
 
 const Success = () => {
     return (
@@ -17,8 +17,8 @@ const Success = () => {
                 </View>
                <View className='my-4 flex flex-col space-y-2'>
                     <Text className="text-center font-bold text-4xl">Congratulations !</Text>
-                    <Text className="text-center">You've completed the task</Text>
-                    <Text className="text-center">"Create a Design Wireframe"</Text>
+                    <Text className="text-center">{"You've completed the task"}</Text>
+                    <Text className="text-center">{'"Create a Design Wireframe"'}</Text>
                </View>
             </View>
 
@@ -37,7 +37,5 @@ const Success = () => {
         </View>
     );
 }
-
-const styles = StyleSheet.create({})
 
 export default Success;

@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text } from 'react-native';
 import TaskDiv from '@/components/task/TaskDiv';
 
-export default function PlanList({date}: {date?: string | undefined}) { 
+export default function PlanList({date}: {date?: string | undefined}) {
 
     return(
         <View>

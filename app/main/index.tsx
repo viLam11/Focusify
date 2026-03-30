@@ -1,9 +1,8 @@
-import DeviceNav from '@/components/Navigation/DeviceNav';
-import TaskItem from '@/components/task/TaskItem';
+import DeviceNav from '@/components/navigation/DeviceNav';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, ScrollView, ImageBackground, Dimensions, TextInput, Image, TouchableOpacity, Button } from 'react-native';
-import TimeCountCard from './TimeCountCard';
+import { View, Text, ScrollView, TextInput, Image, TouchableOpacity } from 'react-native';
+import TimeCountCard from '@/components/home/TimeCountCard';
 import { useRouter } from 'expo-router';
 import {Flag} from 'lucide-react-native';
 
@@ -14,7 +13,6 @@ export default function HomePage() {
     return (
         <View className={`flex-1 w-full ${isOpenModal ? 'bg-gray-300' : "bg-white"}`}>
             <ScrollView className='flex-1 w-11/12 mx-auto'>
-            {/* HEADER  */}
                 <View className="flex flex-row mt-6 items-center h-20">
                     <View className="w-1/5 items-left">
                         <Image source={require('@/assets/images/logo.png')} style={{ width: 40, height: 40 }} />
@@ -29,7 +27,7 @@ export default function HomePage() {
 
             <View className="rounded-2xl p-2 h-20 w-full flex flex-row items-center" style={{
                 backgroundColor: '#f0f0f0',
-            }}>   
+            }}>
                 <View className='mx-2'>
                     <IconSymbol name="magnifyingglass" color={"gray"} size={32}  />
                 </View>
@@ -40,7 +38,7 @@ export default function HomePage() {
 
             <View className="flex flex-row mt-4">
                 <View className="w-1/2 ">
-                   <TouchableOpacity onPress={() => router.push('/main/ToDoDetail')}>  
+                   <TouchableOpacity onPress={() => router.push('/main/todo-detail')}>
                         <TimeCountCard title='Today' totalTime='6h 25m' totalTask='2' />
                     </TouchableOpacity>
                     <View className="h-4"></View>

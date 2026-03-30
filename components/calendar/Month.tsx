@@ -1,9 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { useRouter } from 'expo-router';
-import { IconSymbol } from '../ui/IconSymbol';
-import { useEffect, useState } from 'react';
-import { Calendar, DateData } from 'react-native-calendars';
+import { IconSymbol } from '@/components/ui/IconSymbol';
+import { Calendar } from 'react-native-calendars';
 import ProgressMiniCircle from './ProgressMiniCircle';
 import dayjs from 'dayjs';
 
@@ -44,9 +42,9 @@ export default function Month({ startDate, endDate, customMarks, selectedDate, s
                         color="black"
                     />
                 )}
-                
 
-                firstDay={1}  // Monday as the first day of the week
+
+                firstDay={1}
                 dayComponent={({ date, state }: any) => {
                     const day = date.day.toString().padStart(2, '0');
                     const month = date.month.toString().padStart(2, '0');
@@ -54,18 +52,17 @@ export default function Month({ startDate, endDate, customMarks, selectedDate, s
                     const dateString = `${day}-${month}-${date.year}`;
                     return (
                         <View style={{ height: 40, width: 20, alignItems: 'center',  }}>
-                            <TouchableOpacity onPress={() => setSelectedDate(date.dateString)} > 
+                            <TouchableOpacity onPress={() => setSelectedDate(date.dateString)} >
                                 <View style={{ height: 32, width: 32 ,  alignItems: 'center', justifyContent: 'center', backgroundColor: today == dateString ? "#abdbe3" : "white", borderRadius: 20 }}  >
                                     <ProgressMiniCircle percent={percent} />
                                     <Text className={`${today == dateString ? "font-bold" : "" }`} >{date.day}</Text>
-                                </View> 
+                                </View>
                             </TouchableOpacity>
-                            
-                            {/* hightlight select date */}
+
                             {date.dateString == selectedDate && (
                                 <View className='w-2 h-2 bg-primary-100 rounded-full mt-1' >
                                 </View>
-                            )} 
+                            )}
                         </View>
                     );
                 }}

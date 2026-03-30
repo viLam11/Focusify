@@ -1,13 +1,9 @@
-import DeviceNav from '@/components/Navigation/DeviceNav';
+import DeviceNav from '@/components/navigation/DeviceNav';
 import TaskItem from '@/components/task/TaskItem';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import React from 'react';
-import { View, StyleSheet, Text, ScrollView, ImageBackground, Dimensions, TextInput } from 'react-native';
-import { useRouter } from 'expo-router';
-
+import { View, Text, ScrollView, TextInput } from 'react-native';
 export default function ToDoDetail() {
-    const router = useRouter();
-
     return (
         <View className='flex-1 w-full'>
             <ScrollView className='flex-1 w-11/12 mx-auto'>
@@ -65,9 +61,8 @@ export default function ToDoDetail() {
 
                 {Array.from({ length: 2 }, (_, index) => (
                     <TaskItem key={index} status='on-going' />
-                ))} 
+                ))}
 
-                {/* Completed tasks  */}
                 <View className="mt-6">
                     <Text className='text-lg text-gray-500'>Completed</Text>
                 </View>
@@ -81,8 +76,8 @@ export default function ToDoDetail() {
             <View className="h-24">
                 <DeviceNav currentView='todolist' />
             </View>
-            
-            
+
+
 
         </View>
     )
